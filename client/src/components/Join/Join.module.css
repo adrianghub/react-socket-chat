@@ -26,11 +26,13 @@ body {
   color: #fafafa
 }
 
-.LoginContainer > button {
-  margin-top: 20px;
-  text-transform: inherit!important;
-  color: #fafafa;
-  width: 100%;
+.InputJoin {
+  color: #fafafa!important;
+  padding: 5px!important;
+}
+
+.ButtonSubmit {
+  margin-top: 20px!important;
 }
 
 @media only screen and (min-width: 890px) {
