@@ -31,7 +31,7 @@ const Join = () => {
           <div>
             <Input
               type="text"
-              placeholder="Type chat name..."
+              placeholder="Type chat username..."
               onChange={(e) => handleNameChange(e)}
               classes={{
                 root: classes.InputJoin,
