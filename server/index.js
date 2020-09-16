@@ -1,28 +1,43 @@
-const express = require('express')
-const socketio = require('socket.io')
-const http = require('http')
+const express = require("express");
+const socketio = require("socket.io");
+const http = require("http");
 
-const PORT = process.env.PORT || 5000
+const { addUser, removeUser, getUser, getUsersInRoom } = require("./users.js");
 
-const router = require('./router')
+const PORT = process.env.PORT || 5000;
 
-const app = express()
-const server = http.createServer(app)
-const io = socketio(server)
+const router = require("./router");
 
-io.on('connection', (socket) => {
-  console.log('Established connection with socket')
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
-  socket.on('join', ({ name, room }, callback) => {
-    console.log(name, room);
-  })
+io.on("connection", (socket) => {
+  socket.on("join", ({ name, room }, callback) => {
+    const { error, user } = addUser({ id: socket.id, name, room });
 
+    if (error) return callback(error);
 
-  socket.on('disconnect', () => {
-    console.log('User disconnected')
-  })
-})
+    socket.emit("message", {
+      user: "admin",
+      text: `${user.name}, welcome to the room ${user.room} buddy`,
+    });
+    socket.broadcast
+      .to(user.room)
+      .emit("message", { user: "admin", text: `${user.name}, has joined!` });
 
-app.use(router)
+    socket.join(user.room);
 
-server.listen(PORT, () => console.log(`Server is up and running on port ${PORT}`))
+    calback()
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+});
+
+app.use(router);
+
+server.listen(PORT, () =>
+  console.log(`Server is up and running on port ${PORT}`)
+);
