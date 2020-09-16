@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
 
     socket.join(user.room);
 
-    calback();
+    callback();
   });
 
   socket.on("messageByUser", (message, callback) => {
@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 
     io.to(user.room).emit('message', { user: user.name, text: message });
 
-    calback();
+    callback();
   });
 
   socket.on("disconnect", () => {
