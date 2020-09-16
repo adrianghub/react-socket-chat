@@ -28,7 +28,15 @@ io.on("connection", (socket) => {
 
     socket.join(user.room);
 
-    calback()
+    calback();
+  });
+
+  socket.on("messageByUser", (message, callback) => {
+    const user = getUser(socket.id);
+
+    io.to(user.room).emit('message', { user: user.name, text: message });
+
+    calback();
   });
 
   socket.on("disconnect", () => {
