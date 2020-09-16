@@ -1,4 +1,5 @@
 import React from "react";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import onlineIcon from "../../images/onlineIcon.png";
 import classes from "./InfoBar.module.css";
@@ -14,7 +15,9 @@ const InfoBar = ({ room }) => (
       <h3>{room}</h3>
     </div>
     <div className={classes.RightInnerContainer}>
-      <a href="/">CLOSE ICON</a>
+      <a href="/">
+        <ExitToAppIcon />
+      </a>
     </div>
   </div>
 );
