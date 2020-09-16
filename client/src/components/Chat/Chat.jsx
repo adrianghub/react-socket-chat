@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 
+import classes from './Chat.module.css'
+import InfoBar from "../InfoBar/InfoBar";
+
 let socket;
 
 const Chat = ({ location }) => {
@@ -54,15 +57,16 @@ const Chat = ({ location }) => {
 
   return (
     <>
-      <div className="outerCointainer">
-        <div className="container">
-          <input
+      <div className={classes.OuterContainer}>
+        <div className={classes.Container}>
+          <InfoBar room={room} />
+          {/* <input
             value={message}
             onChange={(e) => handleMessageInput(e)}
             onKeyPress={(e) =>
               e.key === "Enter" ? handleSendMessage(e) : null
             }
-          />
+          /> */}
         </div>
       </div>
     </>
