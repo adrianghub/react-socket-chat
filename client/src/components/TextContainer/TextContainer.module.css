@@ -1,0 +1,33 @@
+.TextContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  color: white;
+  height: 60%;
+  justify-content: space-between;
+}
+
+.ActiveContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50%;
+}
+
+.ActiveItem {
+  display: flex;
+  align-items: center;
+}
+
+.ActiveContainer img {
+  padding-left: 10px;
+}
+
+.TextContainer h1 {
+  margin-bottom: 0px;
+}
+
+@media (min-width: 320px) and (max-width: 1200px) {
+  .TextContainer {
+    display: none;
+  }
+}
